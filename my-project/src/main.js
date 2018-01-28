@@ -3,9 +3,13 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import store from './store/store'
 import firebase from 'firebase'
+import vueResource from 'vue-resource'
+Vue.use(vueResource)
 
 Vue.config.productionTip = false
+
 
 let app;
 var config = {
@@ -23,6 +27,7 @@ firebase.auth().onAuthStateChanged(function(user) {
 		/* eslint-disable no-new */
 		app = new Vue({
 			el: '#app',
+			store,
 			router,
 			components: {
 				App

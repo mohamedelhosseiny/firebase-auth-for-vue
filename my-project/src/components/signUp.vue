@@ -27,7 +27,15 @@ export default {
     signUp: function () {
       firebase.auth().createUserWithEmailAndPassword(this.email,this.password).then(
         (user) =>  {
-          this.$router.replace('hello')
+          this.$router.replace('hello');
+          this.$http.post('http://localhost:4040/api/users', {
+            uid: 'newUser',
+            firstName: this.password,
+            lastName: this.password,
+            email: this.email
+          }).then(function(data) {
+            console.log(data)
+          })
         },
         (err) => {
           alert('Oops ,' + err.message)
